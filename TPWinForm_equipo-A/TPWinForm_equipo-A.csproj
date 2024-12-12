@@ -46,14 +46,71 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmVentana5.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmVentana5.Designer.cs">
+      <DependentUpon>frmVentana5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVentana6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana6.Designer.cs">
+      <DependentUpon>frmVentana6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVentanaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentanaPrincipal.Designer.cs">
+      <DependentUpon>frmVentanaPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVentana1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana1.Designer.cs">
+      <DependentUpon>frmVentana1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVentana2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana2.Designer.cs">
+      <DependentUpon>frmVentana2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVentana3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana3.Designer.cs">
+      <DependentUpon>frmVentana3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVentana4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana4.Designer.cs">
+      <DependentUpon>frmVentana4.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmVentana5.resx">
+      <DependentUpon>frmVentana5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentana6.resx">
+      <DependentUpon>frmVentana6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentanaPrincipal.resx">
+      <DependentUpon>frmVentanaPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentana1.resx">
+      <DependentUpon>frmVentana1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentana2.resx">
+      <DependentUpon>frmVentana2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentana3.resx">
+      <DependentUpon>frmVentana3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentana4.resx">
+      <DependentUpon>frmVentana4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
