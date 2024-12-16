@@ -16,5 +16,11 @@ namespace TPWinForm_equipo_A
         {
             InitializeComponent();
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string texto = txtBuscarElemento.Text;
+            lwElementos.Items.Add (texto); 
+        }
     }
 }

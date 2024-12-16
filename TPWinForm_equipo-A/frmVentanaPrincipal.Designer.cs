@@ -47,7 +47,8 @@
             // 
             // btnListaArticulos
             // 
-            this.btnListaArticulos.Location = new System.Drawing.Point(245, 144);
+            this.btnListaArticulos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnListaArticulos.Location = new System.Drawing.Point(354, 261);
             this.btnListaArticulos.Name = "btnListaArticulos";
             this.btnListaArticulos.Size = new System.Drawing.Size(128, 54);
             this.btnListaArticulos.TabIndex = 0;
@@ -57,7 +58,8 @@
             // 
             // btnBusquedaArticulos
             // 
-            this.btnBusquedaArticulos.Location = new System.Drawing.Point(619, 144);
+            this.btnBusquedaArticulos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBusquedaArticulos.Location = new System.Drawing.Point(728, 261);
             this.btnBusquedaArticulos.Name = "btnBusquedaArticulos";
             this.btnBusquedaArticulos.Size = new System.Drawing.Size(132, 54);
             this.btnBusquedaArticulos.TabIndex = 1;
@@ -67,7 +69,8 @@
             // 
             // btnAgregarArticulo
             // 
-            this.btnAgregarArticulo.Location = new System.Drawing.Point(245, 304);
+            this.btnAgregarArticulo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAgregarArticulo.Location = new System.Drawing.Point(354, 421);
             this.btnAgregarArticulo.Name = "btnAgregarArticulo";
             this.btnAgregarArticulo.Size = new System.Drawing.Size(128, 58);
             this.btnAgregarArticulo.TabIndex = 2;
@@ -77,7 +80,8 @@
             // 
             // btnModificarArticulos
             // 
-            this.btnModificarArticulos.Location = new System.Drawing.Point(619, 304);
+            this.btnModificarArticulos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnModificarArticulos.Location = new System.Drawing.Point(728, 421);
             this.btnModificarArticulos.Name = "btnModificarArticulos";
             this.btnModificarArticulos.Size = new System.Drawing.Size(132, 58);
             this.btnModificarArticulos.TabIndex = 3;
@@ -87,7 +91,8 @@
             // 
             // btnEliminarArticulos
             // 
-            this.btnEliminarArticulos.Location = new System.Drawing.Point(245, 464);
+            this.btnEliminarArticulos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEliminarArticulos.Location = new System.Drawing.Point(354, 581);
             this.btnEliminarArticulos.Name = "btnEliminarArticulos";
             this.btnEliminarArticulos.Size = new System.Drawing.Size(128, 54);
             this.btnEliminarArticulos.TabIndex = 4;
@@ -97,7 +102,8 @@
             // 
             // btnVerDetalleArticulo
             // 
-            this.btnVerDetalleArticulo.Location = new System.Drawing.Point(619, 464);
+            this.btnVerDetalleArticulo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnVerDetalleArticulo.Location = new System.Drawing.Point(728, 581);
             this.btnVerDetalleArticulo.Name = "btnVerDetalleArticulo";
             this.btnVerDetalleArticulo.Size = new System.Drawing.Size(132, 54);
             this.btnVerDetalleArticulo.TabIndex = 5;
@@ -111,7 +117,7 @@
             this.opcionesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1019, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1252, 25);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -175,7 +181,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1019, 737);
+            this.ClientSize = new System.Drawing.Size(1252, 952);
             this.Controls.Add(this.btnVerDetalleArticulo);
             this.Controls.Add(this.btnEliminarArticulos);
             this.Controls.Add(this.btnModificarArticulos);
@@ -184,6 +190,7 @@
             this.Controls.Add(this.btnListaArticulos);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(1268, 991);
             this.Name = "frmVentanaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ventana Principal";

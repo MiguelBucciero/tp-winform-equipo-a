@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulo.cs" />
+    <Compile Include="ArticuloNegocio.cs" />
+    <Compile Include="Categorias.cs" />
     <Compile Include="frmVentana5.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +91,8 @@
     <Compile Include="frmVentana4.Designer.cs">
       <DependentUpon>frmVentana4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Imagen.cs" />
+    <Compile Include="Marca.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmVentana5.resx">
