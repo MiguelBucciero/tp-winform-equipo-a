@@ -49,15 +49,22 @@ namespace TPWinForm_equipo_A
                 art.CodigoArticulo = txtCodigoDeProducto.Text; 
                 art.Nombre = txtNombreDelProducto.Text;
                 art.Descripcion = txtDescripcionDelProducto.Text;
+                art.Marca = (Marca)cboMarcaDelProducto.SelectedItem;
+                art.Categoria = (Categoria)cboCategoria.SelectedItem;
+                if (decimal.TryParse(txtPrecio.Text, out decimal precio)) 
+                { art.Precio = precio; 
+                } 
+                else 
+                { 
+                    MessageBox.Show("Por favor, ingrese un precio válido."); return; 
+                }
 
                 negocio.agregar(art);
                 MessageBox.Show("Agregado exitosamente.");
                 Close();
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
