@@ -42,10 +42,11 @@
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.pbxImagen = new System.Windows.Forms.PictureBox();
             this.lblUrlImagen = new System.Windows.Forms.Label();
             this.txtUrlImagen = new System.Windows.Forms.TextBox();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
+            this.btnAgregarIMG = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,6 +168,11 @@
             this.cboCategoria.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.FormattingEnabled = true;
+            this.cboCategoria.Items.AddRange(new object[] {
+            "1 - Celulares",
+            "2- Televisores",
+            "3- Media",
+            "4- Audio"});
             this.cboCategoria.Location = new System.Drawing.Point(215, 318);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(259, 21);
@@ -191,23 +197,11 @@
             this.txtPrecio.Size = new System.Drawing.Size(259, 20);
             this.txtPrecio.TabIndex = 6;
             // 
-            // btnAgregarImagen
-            // 
-            this.btnAgregarImagen.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnAgregarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarImagen.Location = new System.Drawing.Point(702, 482);
-            this.btnAgregarImagen.Name = "btnAgregarImagen";
-            this.btnAgregarImagen.Size = new System.Drawing.Size(134, 38);
-            this.btnAgregarImagen.TabIndex = 14;
-            this.btnAgregarImagen.Text = "Agregar Imagen";
-            this.btnAgregarImagen.UseVisualStyleBackColor = true;
-            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
-            // 
             // pbxImagen
             // 
-            this.pbxImagen.Location = new System.Drawing.Point(501, 79);
+            this.pbxImagen.Location = new System.Drawing.Point(516, 79);
             this.pbxImagen.Name = "pbxImagen";
-            this.pbxImagen.Size = new System.Drawing.Size(550, 385);
+            this.pbxImagen.Size = new System.Drawing.Size(535, 385);
             this.pbxImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxImagen.TabIndex = 15;
             this.pbxImagen.TabStop = false;
@@ -231,15 +225,37 @@
             this.txtUrlImagen.TabIndex = 17;
             this.txtUrlImagen.TextChanged += new System.EventHandler(this.txtUrlImagen_TextChanged_1);
             // 
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.Location = new System.Drawing.Point(480, 420);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(30, 19);
+            this.btnAgregarImagen.TabIndex = 18;
+            this.btnAgregarImagen.Text = "...";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click_1);
+            // 
+            // btnAgregarIMG
+            // 
+            this.btnAgregarIMG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarIMG.Location = new System.Drawing.Point(721, 484);
+            this.btnAgregarIMG.Name = "btnAgregarIMG";
+            this.btnAgregarIMG.Size = new System.Drawing.Size(139, 36);
+            this.btnAgregarIMG.TabIndex = 19;
+            this.btnAgregarIMG.Text = "Agregar Imagen";
+            this.btnAgregarIMG.UseVisualStyleBackColor = true;
+            this.btnAgregarIMG.Click += new System.EventHandler(this.btnAgregarIMG_Click);
+            // 
             // frmVentana3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1086, 573);
+            this.Controls.Add(this.btnAgregarIMG);
+            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.txtUrlImagen);
             this.Controls.Add(this.lblUrlImagen);
             this.Controls.Add(this.pbxImagen);
-            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.cboCategoria);
@@ -279,9 +295,10 @@
         private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.TextBox txtPrecio;
-        private System.Windows.Forms.Button btnAgregarImagen;
         private System.Windows.Forms.PictureBox pbxImagen;
         private System.Windows.Forms.Label lblUrlImagen;
         private System.Windows.Forms.TextBox txtUrlImagen;
+        private System.Windows.Forms.Button btnAgregarImagen;
+        private System.Windows.Forms.Button btnAgregarIMG;
     }
 }

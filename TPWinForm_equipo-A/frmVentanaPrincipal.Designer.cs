@@ -65,7 +65,6 @@
             this.btnBusquedaArticulos.TabIndex = 1;
             this.btnBusquedaArticulos.Text = "Búsqueda de artículos";
             this.btnBusquedaArticulos.UseVisualStyleBackColor = true;
-            this.btnBusquedaArticulos.Click += new System.EventHandler(this.btnBusquedaArticulos_Click);
             // 
             // btnAgregarArticulo
             // 
@@ -87,7 +86,6 @@
             this.btnModificarArticulos.TabIndex = 3;
             this.btnModificarArticulos.Text = "Modificar artículos";
             this.btnModificarArticulos.UseVisualStyleBackColor = true;
-            this.btnModificarArticulos.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnEliminarArticulos
             // 
@@ -98,7 +96,6 @@
             this.btnEliminarArticulos.TabIndex = 4;
             this.btnEliminarArticulos.Text = "Eliminar artículos";
             this.btnEliminarArticulos.UseVisualStyleBackColor = true;
-            this.btnEliminarArticulos.Click += new System.EventHandler(this.btnEliminarArticulos_Click);
             // 
             // btnVerDetalleArticulo
             // 
@@ -146,7 +143,6 @@
             this.búsquedaDeArticulosToolStripMenuItem.Name = "búsquedaDeArticulosToolStripMenuItem";
             this.búsquedaDeArticulosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.búsquedaDeArticulosToolStripMenuItem.Text = "Búsqueda de Artículos";
-            this.búsquedaDeArticulosToolStripMenuItem.Click += new System.EventHandler(this.búsquedaDeArticulosToolStripMenuItem_Click);
             // 
             // agregarArtículosToolStripMenuItem
             // 
@@ -160,14 +156,12 @@
             this.modificarArtículosToolStripMenuItem.Name = "modificarArtículosToolStripMenuItem";
             this.modificarArtículosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.modificarArtículosToolStripMenuItem.Text = "Modificar Artículos";
-            this.modificarArtículosToolStripMenuItem.Click += new System.EventHandler(this.modificarArtículosToolStripMenuItem_Click);
             // 
             // elminarArtículosToolStripMenuItem
             // 
             this.elminarArtículosToolStripMenuItem.Name = "elminarArtículosToolStripMenuItem";
             this.elminarArtículosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.elminarArtículosToolStripMenuItem.Text = "Elminar Artículos";
-            this.elminarArtículosToolStripMenuItem.Click += new System.EventHandler(this.elminarArtículosToolStripMenuItem_Click);
             // 
             // verDetallaDeUnArtículoToolStripMenuItem
             // 

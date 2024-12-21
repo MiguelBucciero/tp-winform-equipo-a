@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using System.Configuration;
 
 namespace TPWinForm_equipo_A
 {
     public partial class frmVentana3 : Form
     {
         private Articulo nuevo = null;
+        private OpenFileDialog archivo = null;
         public frmVentana3()
         {
             InitializeComponent();
@@ -87,6 +90,7 @@ namespace TPWinForm_equipo_A
                 }
                 if (nuevo.Id != 0)
                 {
+  
                     negocio.modificar(nuevo);
                     MessageBox.Show("Modificado exitosamente.");
                 }
@@ -95,8 +99,6 @@ namespace TPWinForm_equipo_A
                     negocio.agregar(nuevo);
                     MessageBox.Show("Agregado exitosamente.");
                 }
-    
-
                 //Close();
             }
             catch (Exception ex)
@@ -105,32 +107,16 @@ namespace TPWinForm_equipo_A
             }
         }
 
-        private void btnAgregarImagen_Click(object sender, EventArgs e)
-        {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            try
-            {
-                if(nuevo == null)
-                    nuevo = new Articulo();
-                negocio.ultimoRegistro(nuevo);
-                nuevo.Imagen.Url = txtUrlImagen.Text;
-                negocio.agregarImagen(nuevo);
-                MessageBox.Show("Imagen agregada correctamente");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
         private void cargarImagen(string imagen)
         {
-            try
-            {
-                pbxImagen.Load(imagen);
-            }
-            catch (Exception ex)
-            {
-                pbxImagen.Load("https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=");
+            {try
+                {
+                    pbxImagen.Load(imagen);
+                }
+                catch (Exception ex)
+                {
+                    pbxImagen.Load("https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=");
+                }
             }
 
         }
@@ -138,6 +124,40 @@ namespace TPWinForm_equipo_A
         private void txtUrlImagen_TextChanged_1(object sender, EventArgs e)
         {
             cargarImagen(txtUrlImagen.Text);
+        }
+
+        private void btnAgregarImagen_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog archivo = new OpenFileDialog();
+            archivo.Filter = "JPG|*.jpg;|png|*.png";
+            if(archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtUrlImagen.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagen"] + archivo.SafeFileName);
+            }
+        }
+
+        private void btnAgregarIMG_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                if (nuevo == null)
+                    nuevo = new Articulo();
+                if (nuevo.Id != 0)
+                {
+                    negocio.ultimoRegistro(nuevo);
+                    Imagen imagen = new Imagen();
+                    nuevo.Imagen.Url = txtUrlImagen.Text;
+                }
+
+                MessageBox.Show("Imagen agregada correctamente");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
