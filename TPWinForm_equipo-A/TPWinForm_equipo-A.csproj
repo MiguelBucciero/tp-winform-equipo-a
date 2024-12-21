@@ -58,6 +58,12 @@
     <Compile Include="frmVentana6.Designer.cs">
       <DependentUpon>frmVentana6.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVentana7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana7.Designer.cs">
+      <DependentUpon>frmVentana7.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmVentana6.resx">
       <DependentUpon>frmVentana6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentana7.resx">
+      <DependentUpon>frmVentana7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVentanaPrincipal.resx">
       <DependentUpon>frmVentanaPrincipal.cs</DependentUpon>

@@ -23,15 +23,7 @@ namespace TPWinForm_equipo_A
 
         private void frmVentana1_Load(object sender, EventArgs e)
         {
-            
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            listaArticulos = negocio.listar();
-            dgvArticulos.DataSource = listaArticulos;
-            dgvArticulos.Columns["Imagen"].Visible = false;
-            dgvArticulos.Columns["CodigoArticulo"].Visible = false;
-            dgvArticulos.Columns["Marca"].Visible = false;
-            dgvArticulos.Columns["Categoria"].Visible = false; 
-            cargarImagen(listaArticulos[0].Imagen.Url);
+            cargar();
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -52,17 +44,69 @@ namespace TPWinForm_equipo_A
             }
             
         }
-
+        private void cargar()
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                listaArticulos = negocio.listar();
+                dgvArticulos.DataSource = listaArticulos;
+                dgvArticulos.Columns["Id"].Visible = false;
+                dgvArticulos.Columns["Imagen"].Visible = false;
+                dgvArticulos.Columns["CodigoArticulo"].Visible = false;
+                dgvArticulos.Columns["Marca"].Visible = false;
+                dgvArticulos.Columns["Categoria"].Visible = false;
+                cargarImagen(listaArticulos[0].Imagen.Url);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmVentana3 alta = new frmVentana3();
             alta.ShowDialog();
+
         }
 
         private void btnDetalleArticulo_Click(object sender, EventArgs e)
         {
             frmVentana6 detalleArticulos = new frmVentana6();
             detalleArticulos.ShowDialog();
+            cargar();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmVentana3 modificar = new frmVentana3(seleccionado);
+            modificar.ShowDialog();
+            cargar();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo seleccionado; 
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("¿Estas seguro de eliminar el articulo?", "Eliminando",MessageBoxButtons.YesNo,MessageBoxIcon.Warning );
+                if(respuesta == DialogResult.Yes)
+                {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                negocio.eliminar(seleccionado.Id);
+                cargar() ;
+                  
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
