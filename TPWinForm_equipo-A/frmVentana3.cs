@@ -90,16 +90,25 @@ namespace TPWinForm_equipo_A
                 }
                 if (nuevo.Id != 0)
                 {
-  
                     negocio.modificar(nuevo);
+                    int id = nuevo.Id;
+                    Imagen img = new Imagen();
+                    img.Url = txtUrlImagen.Text;
+                    img.IdArticulo = id;
+                    negocio.modificarImagen(img);
                     MessageBox.Show("Modificado exitosamente.");
                 }
                 else
                 {
                     negocio.agregar(nuevo);
+                    int id = negocio.ultimoRegistro(nuevo);
+                    Imagen img = new Imagen();
+                    img.Url = txtUrlImagen.Text;
+                    img.IdArticulo = id;
+                    negocio.agregarImagen(img);
                     MessageBox.Show("Agregado exitosamente.");
                 }
-                //Close();
+                Close();
             }
             catch (Exception ex)
             {
@@ -138,26 +147,5 @@ namespace TPWinForm_equipo_A
             }
         }
 
-        private void btnAgregarIMG_Click(object sender, EventArgs e)
-        {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            try
-            {
-                if (nuevo == null)
-                    nuevo = new Articulo();
-                if (nuevo.Id != 0)
-                {
-                    negocio.ultimoRegistro(nuevo);
-                    Imagen imagen = new Imagen();
-                    nuevo.Imagen.Url = txtUrlImagen.Text;
-                }
-
-                MessageBox.Show("Imagen agregada correctamente");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
     }
 }

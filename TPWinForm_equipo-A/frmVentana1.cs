@@ -82,9 +82,10 @@ namespace TPWinForm_equipo_A
 
         private void btnDetalleArticulo_Click(object sender, EventArgs e)
         {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             frmVentana6 detalleArticulos = new frmVentana6();
             detalleArticulos.ShowDialog();
-            cargar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -108,7 +109,7 @@ namespace TPWinForm_equipo_A
                 {
                 seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 negocio.eliminar(seleccionado.Id);
-                cargar() ;
+                cargar();
                   
                 }
             }

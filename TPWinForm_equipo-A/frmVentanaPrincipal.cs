@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using dominio;
 
 namespace TPWinForm_equipo_A
 {
@@ -28,12 +29,6 @@ namespace TPWinForm_equipo_A
             frmVentana3 ventana3 = new frmVentana3();
             ventana3.ShowDialog();
         }
-        private void btnVerDetalleArticulo_Click(object sender, EventArgs e)
-        {
-            frmVentana6 ventana6 = new frmVentana6();
-            ventana6.ShowDialog();
-        }
-
         private void listaDeArticulosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmVentana1 ventana = new frmVentana1();
@@ -46,10 +41,10 @@ namespace TPWinForm_equipo_A
             ventana3.ShowDialog();
         }
 
-        private void verDetallaDeUnArtículoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnModificarArticulos_Click(object sender, EventArgs e)
         {
-            frmVentana6 ventana6 = new frmVentana6();
-            ventana6.ShowDialog();
+            frmVentana3 ventana3 = new frmVentana3();
+            ventana3.ShowDialog();
         }
     }
 }

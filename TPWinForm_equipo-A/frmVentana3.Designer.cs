@@ -46,7 +46,6 @@
             this.lblUrlImagen = new System.Windows.Forms.Label();
             this.txtUrlImagen = new System.Windows.Forms.TextBox();
             this.btnAgregarImagen = new System.Windows.Forms.Button();
-            this.btnAgregarIMG = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagen)).BeginInit();
             this.SuspendLayout();
             // 
@@ -235,23 +234,11 @@
             this.btnAgregarImagen.UseVisualStyleBackColor = true;
             this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click_1);
             // 
-            // btnAgregarIMG
-            // 
-            this.btnAgregarIMG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarIMG.Location = new System.Drawing.Point(721, 484);
-            this.btnAgregarIMG.Name = "btnAgregarIMG";
-            this.btnAgregarIMG.Size = new System.Drawing.Size(139, 36);
-            this.btnAgregarIMG.TabIndex = 19;
-            this.btnAgregarIMG.Text = "Agregar Imagen";
-            this.btnAgregarIMG.UseVisualStyleBackColor = true;
-            this.btnAgregarIMG.Click += new System.EventHandler(this.btnAgregarIMG_Click);
-            // 
             // frmVentana3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1086, 573);
-            this.Controls.Add(this.btnAgregarIMG);
             this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.txtUrlImagen);
             this.Controls.Add(this.lblUrlImagen);
@@ -270,6 +257,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblNombreProducto);
             this.Controls.Add(this.lblCodigo);
+            this.MinimumSize = new System.Drawing.Size(1102, 612);
             this.Name = "frmVentana3";
             this.Text = "Agregar artículos";
             this.Load += new System.EventHandler(this.frmVentana3_Load);
@@ -299,6 +287,5 @@
         private System.Windows.Forms.Label lblUrlImagen;
         private System.Windows.Forms.TextBox txtUrlImagen;
         private System.Windows.Forms.Button btnAgregarImagen;
-        private System.Windows.Forms.Button btnAgregarIMG;
     }
 }

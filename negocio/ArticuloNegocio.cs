@@ -22,7 +22,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, Precio, ImagenUrl, I.IdArticulo, C.Descripcion ,C.Id, M.Descripcion,M.Id From ARTICULOS A, IMAGENES I, CATEGORIAS C, MARCAS M Where I.Id = A.Id AND C.Id = A.IdCategoria AND M.Id = A.IdMarca";
+                comando.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, Precio, ImagenUrl, I.IdArticulo, C.Descripcion ,C.Id, M.Descripcion,M.Id From ARTICULOS A, IMAGENES I, CATEGORIAS C, MARCAS M Where I.IdArticulo = A.Id AND C.Id = A.IdCategoria AND M.Id = A.IdMarca";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -91,7 +91,7 @@ namespace negocio
                 datos.setearParametro("@IdMarca", nuevo.Marca.Id);
                 datos.setearParametro("@IdCategoria", nuevo.Categoria.Id);
                 datos.setearParametro("@Precio", nuevo.Precio);
-                ///datos.setearParametro("@Id", id);
+                datos.setearParametro("@Id", nuevo.Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -118,14 +118,14 @@ namespace negocio
                 throw ex;
             }
         }
-        public void agregarImagen(Articulo nuevo)
+        public void agregarImagen(Imagen nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)");
-                datos.setearParametro("@IdArticulo", nuevo.Id);
-                datos.setearParametro("@ImagenUrl", nuevo.Imagen.Url);
+                datos.setearParametro("@IdArticulo", nuevo.IdArticulo);
+                datos.setearParametro("@ImagenUrl", nuevo.Url);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -137,13 +137,14 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void modificarImagen(Articulo nuevo)
+        public void modificarImagen(Imagen nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE IdArticulo = @IdArticulo");
-                datos.setearParametro("@ImagenUrl", nuevo.Imagen.Url);
+                datos.setearParametro("@ImagenUrl", nuevo.Url);
+                datos.setearParametro("@IdArticulo", nuevo.IdArticulo);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -155,7 +156,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void ultimoRegistro(Articulo nuevo)
+        public int ultimoRegistro(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -166,6 +167,7 @@ namespace negocio
                 {
                     nuevo.Id = (int)(datos.Lector["Id"]);
                 }
+                return nuevo.Id;
             }
             catch (Exception ex)
             {
