@@ -14,26 +14,30 @@ namespace TPWinForm_equipo_A
 {
     public partial class frmVentana6 : Form
     {
-        private List<Articulo> listaArticulos;
-        public frmVentana6()
+        private Articulo nuevo;
+        private List<string> listaImagenes;
+        public frmVentana6(Articulo nuevo)
         {
             InitializeComponent();
+            this.nuevo = nuevo;
+            listaImagenes = new List<string>();
         }
-
         private void frmVentana6_Load(object sender, EventArgs e)
         {
             cargar();
         }
-
         private void cargar()
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                listaArticulos = negocio.listar();
+                List<Articulo> listaArticulos = new List<Articulo> { nuevo };
                 dgvDetalleArticulo.DataSource = listaArticulos;
+                dgvDetalleArticulo.Columns["Id"].Visible = false;
                 dgvDetalleArticulo.Columns["Imagen"].Visible = false;
-                cargarImagen(listaArticulos[0].Imagen.Url);
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                listaImagenes = negocio.listarImagenes(nuevo).Select(x => x.Imagen.Url).ToList();
+                lbxImagenes.DataSource = listaImagenes;
+                cargarImagen(listaImagenes[0]);
             }
             catch (Exception ex)
             {
@@ -51,14 +55,10 @@ namespace TPWinForm_equipo_A
                 pbxImagen.Load("https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=");
             }
         }
-
-        private void dgvDetalleArticulo_SelectionChanged(object sender, EventArgs e)
+        private void lbxImagenes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dgvDetalleArticulo.CurrentRow != null)
-            {
-                Articulo seleccionado = (Articulo)dgvDetalleArticulo.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.Imagen.Url);
-            }
+            string selectedImageUrl = lbxImagenes.SelectedItem.ToString();
+            cargarImagen(selectedImageUrl);
         }
     }
 }

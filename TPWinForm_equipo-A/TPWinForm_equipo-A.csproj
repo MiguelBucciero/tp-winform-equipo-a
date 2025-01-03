@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmVentana2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana2.Designer.cs">
+      <DependentUpon>frmVentana2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVentana4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana4.Designer.cs">
+      <DependentUpon>frmVentana4.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVentana6.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +85,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmVentana2.resx">
+      <DependentUpon>frmVentana2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentana4.resx">
+      <DependentUpon>frmVentana4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmVentana6.resx">
       <DependentUpon>frmVentana6.cs</DependentUpon>
     </EmbeddedResource>

@@ -46,5 +46,11 @@ namespace TPWinForm_equipo_A
             frmVentana3 ventana3 = new frmVentana3();
             ventana3.ShowDialog();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmVentana4 ventana = new frmVentana4();
+            ventana.ShowDialog();
+        }
     }
 }

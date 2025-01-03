@@ -28,6 +28,10 @@ namespace TPWinForm_equipo_A
             cboCampo.Items.Add("Nombre");
             cboCampo.Items.Add("Precio");
         }
+        private void frmVentana1_Activated(object sender, EventArgs e)
+        {
+            cargar();
+        }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
@@ -36,6 +40,11 @@ namespace TPWinForm_equipo_A
             Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             cargarImagen(seleccionado.Imagen.Url);
             }
+            bool seleccion = dgvArticulos.SelectedRows.Count > 0;
+            btnModificar.Enabled = seleccion;
+            btnAgregarOtraImagen.Enabled = seleccion;
+            btnEliminar.Enabled = seleccion;
+            btnDetalleArticulo.Enabled = seleccion;
         }  
 
         private void cargarImagen(string imagen) 
@@ -59,6 +68,10 @@ namespace TPWinForm_equipo_A
                 dgvArticulos.DataSource = listaArticulos;
                 ocultarColummnas();
                 cargarImagen(listaArticulos[0].Imagen.Url);
+                btnModificar.Enabled = false;
+                btnAgregarOtraImagen.Enabled = false;
+                btnEliminar.Enabled = false;
+                btnDetalleArticulo.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -84,7 +97,7 @@ namespace TPWinForm_equipo_A
         {
             Articulo seleccionado;
             seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            frmVentana6 detalleArticulos = new frmVentana6();
+            frmVentana6 detalleArticulos = new frmVentana6(seleccionado);
             detalleArticulos.ShowDialog();
         }
 
@@ -92,10 +105,8 @@ namespace TPWinForm_equipo_A
         {
             Articulo seleccionado;
             seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-
             frmVentana3 modificar = new frmVentana3(seleccionado);
             modificar.ShowDialog();
-            cargar();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -165,11 +176,54 @@ namespace TPWinForm_equipo_A
             
         }
 
+        private bool validarFiltro()
+        {
+            if(cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione un campo para filtrar");
+                return true;
+            }
+            if(cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione un criterio para filtrar");
+                return true;
+            }
+            if(cboCampo.SelectedItem.ToString()== "Número")
+            {
+                if(string.IsNullOrEmpty(txtFiltroAvanzado.Text))
+                {
+                    MessageBox.Show("Por favor, ingrese un número para filtrar");
+                    return true;
+                }
+                if (!(soloNumeros(txtFiltroAvanzado.Text)))
+                {
+                    MessageBox.Show("Por favor, ingrese un número válido");
+                    return true;
+                }
+            }
+            return false;
+
+        }
+        private bool soloNumeros(string cadena)
+        {
+            if (cadena.StartsWith("-"))
+            {
+                return false;
+            }
+            foreach (char caracter in cadena)
+            {
+                if(!(char.IsNumber(caracter) ))
+                    return false;
+            }
+            return true;
+        }
         private void btnFiltro_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                if(validarFiltro())
+                    return;
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltroAvanzado.Text;
@@ -180,6 +234,14 @@ namespace TPWinForm_equipo_A
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnAgregarOtraImagen_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmVentana2 agregarImagen = new frmVentana2(seleccionado);
+            agregarImagen.ShowDialog();
         }
     }
 }

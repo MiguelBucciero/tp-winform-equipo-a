@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaDeArticulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,9 +80,20 @@
             // listaDeArticulosToolStripMenuItem
             // 
             this.listaDeArticulosToolStripMenuItem.Name = "listaDeArticulosToolStripMenuItem";
-            this.listaDeArticulosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaDeArticulosToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.listaDeArticulosToolStripMenuItem.Text = "Lista de Artículos";
             this.listaDeArticulosToolStripMenuItem.Click += new System.EventHandler(this.listaDeArticulosToolStripMenuItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Location = new System.Drawing.Point(543, 591);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 81);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Agregar Marcas y Categorias";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // frmVentanaPrincipal
             // 
@@ -89,6 +101,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1252, 952);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAgregarArticulo);
             this.Controls.Add(this.btnListaArticulos);
             this.Controls.Add(this.menuStrip1);
@@ -111,6 +124,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listaDeArticulosToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 

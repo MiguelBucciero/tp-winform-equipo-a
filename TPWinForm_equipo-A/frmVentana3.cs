@@ -28,12 +28,61 @@ namespace TPWinForm_equipo_A
             this.nuevo = nuevo;
             Text = "Modificar Artículo";
         }
-
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                if(nuevo == null)
+                    nuevo = new Articulo();
+                if (!validarCampos())
+                    return;
+                nuevo.CodigoArticulo = txtCodigoDeProducto.Text;
+                nuevo.Nombre = txtNombreDelProducto.Text;
+                nuevo.Descripcion = txtDescripcionDelProducto.Text;
+                nuevo.Marca = (Marca)cboMarcaDelProducto.SelectedItem;
+                nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
+                decimal.TryParse(txtPrecio.Text, out decimal precio);
+                nuevo.Precio = precio;
+                if (nuevo.Id != 0)
+                {
+                    negocio.modificar(nuevo);
+                    int id = nuevo.Id;
+                    Imagen img = new Imagen();
+                    img.Url = txtUrlImagen.Text;
+                    img.Id = id;
+                    negocio.modificarImagen(img);
+                    MessageBox.Show("Modificado exitosamente.");
+                }
+                else
+                {
+                    negocio.agregar(nuevo);
+                    int id = negocio.ultimoRegistro(nuevo);
+                    Imagen img = new Imagen();
+                    img.Url = txtUrlImagen.Text;
+                    img.IdArticulo = id;
+                    negocio.agregarImagen(img);
+                    MessageBox.Show("Agregado exitosamente.");
+                }
+                if(archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagen"] + archivo.SafeFileName);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
         private void frmVentana3_Load(object sender, EventArgs e)
         {
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-
+ 
             try
             {
                 cboMarcaDelProducto.DataSource = marcaNegocio.listar();
@@ -50,8 +99,9 @@ namespace TPWinForm_equipo_A
                     txtPrecio.Text = nuevo.Precio.ToString();
                     txtUrlImagen.Text = nuevo.Imagen.Url;
                     cargarImagen(nuevo.Imagen.Url);
-                    cboMarcaDelProducto.SelectedValue = nuevo.Marca.Descripcion;
-                    cboCategoria.SelectedValue = nuevo.Categoria.Descripcion;
+
+                    cboMarcaDelProducto.SelectedValue = nuevo.Marca.Id;
+                    cboCategoria.SelectedValue = nuevo.Categoria.Id;
                 }
             }
             catch (Exception ex)
@@ -60,62 +110,38 @@ namespace TPWinForm_equipo_A
                 MessageBox.Show(ex.ToString());
             }
         }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private bool validarCampos()
         {
-            Close();
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            try
+            if (string.IsNullOrEmpty(txtCodigoDeProducto.Text))
             {
-                if(nuevo == null)
-                    nuevo = new Articulo();
-                nuevo.CodigoArticulo = txtCodigoDeProducto.Text;
-                nuevo.Nombre = txtNombreDelProducto.Text;
-                nuevo.Descripcion = txtDescripcionDelProducto.Text;
-                nuevo.Marca = (Marca)cboMarcaDelProducto.SelectedItem;
-                nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
-                if (decimal.TryParse(txtPrecio.Text, out decimal precio))
-                {
-                    nuevo.Precio = precio;
-                }
-                else
-                {
-                    MessageBox.Show("Por favor, ingrese un precio válido.");
-                    return;
-                }
-                if (nuevo.Id != 0)
-                {
-                    negocio.modificar(nuevo);
-                    int id = nuevo.Id;
-                    Imagen img = new Imagen();
-                    img.Url = txtUrlImagen.Text;
-                    img.IdArticulo = id;
-                    negocio.modificarImagen(img);
-                    MessageBox.Show("Modificado exitosamente.");
-                }
-                else
-                {
-                    negocio.agregar(nuevo);
-                    int id = negocio.ultimoRegistro(nuevo);
-                    Imagen img = new Imagen();
-                    img.Url = txtUrlImagen.Text;
-                    img.IdArticulo = id;
-                    negocio.agregarImagen(img);
-                    MessageBox.Show("Agregado exitosamente.");
-                }
-                Close();
+                MessageBox.Show("Por favor, ingrese un código de producto.");
+                return false;
             }
-            catch (Exception ex)
+            if (string.IsNullOrEmpty(txtNombreDelProducto.Text))
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Por favor, ingrese un nombre de producto.");
+                return false;
             }
+            if (string.IsNullOrEmpty(txtPrecio.Text))
+            {
+                MessageBox.Show("Por favor, ingrese un precio de producto.");
+                return false;
+            }
+            if (decimal.TryParse(txtPrecio.Text, out decimal precio))
+            {
+                if (precio <= 0)
+                {
+                    MessageBox.Show("Por favor, ingrese un precio válido y no negativo.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un precio válido.");
+                return false;
+            }
+            return true;
         }
-
         private void cargarImagen(string imagen)
         {
             {try
@@ -129,21 +155,18 @@ namespace TPWinForm_equipo_A
             }
 
         }
-
         private void txtUrlImagen_TextChanged_1(object sender, EventArgs e)
         {
             cargarImagen(txtUrlImagen.Text);
         }
-
         private void btnAgregarImagen_Click_1(object sender, EventArgs e)
         {
-            OpenFileDialog archivo = new OpenFileDialog();
-            archivo.Filter = "JPG|*.jpg;|png|*.png";
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg;|png|*.png";
             if(archivo.ShowDialog() == DialogResult.OK)
             {
                 txtUrlImagen.Text = archivo.FileName;
                 cargarImagen(archivo.FileName);
-                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagen"] + archivo.SafeFileName);
             }
         }
 

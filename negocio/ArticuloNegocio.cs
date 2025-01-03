@@ -22,7 +22,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, Precio, ImagenUrl, I.IdArticulo, C.Descripcion ,C.Id, M.Descripcion,M.Id From ARTICULOS A, IMAGENES I, CATEGORIAS C, MARCAS M Where I.IdArticulo = A.Id AND C.Id = A.IdCategoria AND M.Id = A.IdMarca";
+                comando.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion , Precio, ImagenUrl, I.IdArticulo, C.Descripcion CatDes ,C.Id IdCategoria, M.Descripcion MarDes,M.Id IdMarca From ARTICULOS A, IMAGENES I, CATEGORIAS C, MARCAS M Where I.Id = A.Id AND C.Id = A.IdCategoria AND M.Id = A.IdMarca";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -40,11 +40,11 @@ namespace negocio
                     aux.Imagen.Url = (string)lector["ImagenUrl"];
                     aux.Imagen.IdArticulo = (int)lector["IdArticulo"];
                     aux.Categoria = new Categoria();
-                    aux.Categoria.Descripcion = (string)lector["Descripcion"];
-                    aux.Categoria.Id = (int)lector["Id"];
+                    aux.Categoria.Descripcion = (string)lector["CatDes"];
+                    aux.Categoria.Id = (int)lector["IdCategoria"];
                     aux.Marca = new Marca();
-                    aux.Marca.Descripcion = (string)lector["Descripcion"];
-                    aux.Marca.Id = (int)lector["Id"];
+                    aux.Marca.Descripcion = (string)lector["MarDes"];
+                    aux.Marca.Id = (int)lector["IdMarca"];
 
                     lista.Add(aux);
                 }
@@ -103,7 +103,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-
         public void eliminar(int id)
         {
             try
@@ -142,9 +141,9 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE IdArticulo = @IdArticulo");
+                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE Id = @Id");
                 datos.setearParametro("@ImagenUrl", nuevo.Url);
-                datos.setearParametro("@IdArticulo", nuevo.IdArticulo);
+                datos.setearParametro("@Id", nuevo.Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -178,7 +177,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        
         public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
             List<Articulo> lista = new List<Articulo>();
@@ -188,7 +186,7 @@ namespace negocio
                 string consulta = ("Select A.Id, Codigo, Nombre, A.Descripcion, Precio, ImagenUrl, I.IdArticulo, C.Descripcion ,C.Id, M.Descripcion,M.Id Marca From ARTICULOS A, IMAGENES I, CATEGORIAS C, MARCAS M Where I.Id = A.Id AND C.Id = A.IdCategoria AND M.Id = A.IdMarca AND ");
                 if (campo == "Número")
                 {
-                    switch(criterio)
+                    switch (criterio)
                     {
                         case "Mayor a":
                             consulta += "A.Id > " + filtro;
@@ -212,7 +210,7 @@ namespace negocio
                             consulta += "Nombre like '% " + filtro + "'";
                             break;
                         default:
-                            consulta += "Nombre like '%"+ filtro + "%'";
+                            consulta += "Nombre like '%" + filtro + "%'";
                             break;
                     }
                 }
@@ -258,6 +256,30 @@ namespace negocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+
+        public List<Articulo> listarImagenes(Articulo nuevo)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Select ImagenUrl From IMAGENES Where IdArticulo = @IdArticulo");
+                datos.setearParametro("@IdArticulo", nuevo.Imagen.IdArticulo);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.Imagen = new Imagen();
+                    aux.Imagen.Url = (string)datos.Lector["ImagenUrl"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }

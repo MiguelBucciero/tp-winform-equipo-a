@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "frmVentana4";
-            this.Text = "Modificar artículos";
+            this.Text = "Agregar Marca y Categoria";
             this.ResumeLayout(false);
 
         }
